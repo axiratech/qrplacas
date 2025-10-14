@@ -46,7 +46,7 @@ export const Hero = () => {
           <div className="animate-scale-in relative">
             <div className="grid grid-cols-2 gap-4 md:gap-6">
               <div className="space-y-3">
-                <div className="overflow-hidden rounded-2xl shadow-lg">
+                <div className="overflow-hidden rounded-2xl shadow-lg aspect-[3/4]">
                   <img
                     src={placaAntiga}
                     alt="Placa antiga de volto já"
@@ -61,7 +61,7 @@ export const Hero = () => {
               </div>
 
               <div className="space-y-3">
-                <div className="overflow-hidden rounded-2xl shadow-xl ring-2 ring-primary/20">
+                <div className="overflow-hidden rounded-2xl shadow-xl ring-2 ring-primary/20 aspect-[3/4]">
                   <img
                     src={qrPlaca}
                     alt="QR Placa moderna"
