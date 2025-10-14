@@ -1,6 +1,8 @@
-import { Check, Sparkles, Crown } from "lucide-react";
+import { useState } from "react";
+import { Check, Sparkles, Crown, ZoomIn, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
 import paginaQrTop from "@/assets/pagina-qr-top.png";
 import minisiteQrPro from "@/assets/minisite-qr-pro.png";
 import placaPdfTop from "@/assets/placa-pdf-qr-top.png";
@@ -21,7 +23,10 @@ const plans = [
       "Arquivo PNG do QRCode para personalização",
       "Atualizações futuras: R$ 30,00 por solicitação",
     ],
-    images: [paginaQrTop, placaPdfTop],
+    images: [
+      { src: paginaQrTop, caption: "Exemplo de Página Simples" },
+      { src: placaPdfTop, caption: "Exemplo de arquivo em PDF simples, pronto para ser impresso" },
+    ],
     buttonText: "Quero o plano Top",
   },
   {
@@ -39,12 +44,17 @@ const plans = [
       "BRINDE: 3 meses de atualizações gratuitas",
       "Após isso, R$ 30,00 por atualização",
     ],
-    images: [minisiteQrPro, placaPdfPro],
+    images: [
+      { src: minisiteQrPro, caption: "Exemplo de minisite do plano Pro" },
+      { src: placaPdfPro, caption: "Exemplo de arquivo em PDF pronto para ser impresso" },
+    ],
     buttonText: "Quero o plano Pro",
   },
 ];
 
 export const PricingPlans = () => {
+  const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
+
   return (
     <section id="planos" className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -104,16 +114,36 @@ export const PricingPlans = () => {
                   ))}
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  {plan.images.map((img, i) => (
-                    <div key={i} className="overflow-hidden rounded-lg border border-border">
-                      <img
-                        src={img}
-                        alt={`${plan.name} exemplo ${i + 1}`}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  ))}
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    {plan.images.map((img, i) => (
+                      <div key={i} className="space-y-2">
+                        <div 
+                          className="relative overflow-hidden rounded-lg border border-border group cursor-pointer"
+                          onClick={() => setSelectedImage(img)}
+                        >
+                          <img
+                            src={img.src}
+                            alt={img.caption}
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+                            <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </div>
+                        </div>
+                        <p className="text-xs text-center text-muted-foreground">
+                          {img.caption}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="flex items-start gap-2 pt-2">
+                    <Info className="h-4 w-4 text-muted-foreground/60 mt-0.5 shrink-0" />
+                    <p className="text-xs italic text-muted-foreground/80">
+                      Os dados mostrados nas imagens são fictícios e apenas para fins ilustrativos.
+                    </p>
+                  </div>
                 </div>
               </CardContent>
 
@@ -132,6 +162,26 @@ export const PricingPlans = () => {
             </Card>
           ))}
         </div>
+
+        {/* Image Zoom Dialog */}
+        <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+          <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 overflow-hidden">
+            {selectedImage && (
+              <div className="relative">
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.caption}
+                  className="w-full h-full object-contain max-h-[90vh]"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <p className="text-white text-center font-medium">
+                    {selectedImage.caption}
+                  </p>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
