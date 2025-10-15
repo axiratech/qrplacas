@@ -1,4 +1,5 @@
-import { QrCode } from "lucide-react";
+import { Instagram, Facebook, Shield } from "lucide-react";
+import logo from "@/assets/logo-qr-placas.png";
 
 export const Footer = () => {
   const scrollToSection = (id: string) => {
@@ -6,20 +7,23 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-border bg-muted/30 py-12">
+    <footer className="border-t border-border bg-gradient-to-b from-muted/30 to-muted/50 py-16">
       <div className="container mx-auto px-4">
-        <div className="grid gap-8 md:grid-cols-3 md:gap-12">
+        <div className="grid gap-8 md:grid-cols-4 md:gap-12 mb-12">
           {/* Logo e Slogan */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary">
-                <QrCode className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold">QR Placas</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Seu negócio, digital e funcional.
+          <div className="space-y-4 md:col-span-1">
+            <img src={logo} alt="QR Placas" className="h-12 w-auto mb-4" />
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Seu negócio, digital e funcional. Modernize seu atendimento com QR Codes inteligentes.
             </p>
+            <div className="flex gap-3 pt-2">
+              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors">
+                <Instagram className="h-5 w-5 text-primary" />
+              </a>
+              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors">
+                <Facebook className="h-5 w-5 text-primary" />
+              </a>
+            </div>
           </div>
 
           {/* Links */}

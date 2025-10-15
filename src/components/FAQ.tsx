@@ -4,34 +4,50 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { HelpCircle, Shield, Clock, CreditCard, Palette, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const faqs = [
   {
-    question: "Posso personalizar o QRCode?",
+    icon: Shield,
+    question: "E se eu não gostar do resultado?",
     answer:
-      "Sim! Enviamos o PNG com o QR Code gerado e você pode fazer a arte da placa do jeito que quiser. Você tem total liberdade para adaptar ao visual do seu negócio.",
+      "Garantia de 7 dias! Se não ficar satisfeito com o resultado, devolvemos 100% do seu dinheiro, sem perguntas. Sua satisfação é nossa prioridade.",
+    priority: true,
   },
   {
-    question: "Como recebo o arquivo?",
-    answer:
-      "Por e-mail, você receberá o PDF com a arte pronta para imprimir em A4 e o PNG com o arquivo do QR Code gerado para personalização.",
-  },
-  {
-    question: "Posso atualizar depois?",
-    answer:
-      "Sim! No plano Top, cada atualização custa R$ 30,00. No plano Pro, você tem 3 meses de atualizações gratuitas incluídas, depois R$ 30,00 por atualização.",
-  },
-  {
+    icon: CreditCard,
     question: "Posso parcelar o pagamento?",
     answer:
-      "Sim, o plano Pro pode ser parcelado. O plano Top é apenas pagamento único de R$ 99,00.",
+      "Sim! O plano Pro pode ser parcelado em até 10x sem juros. O plano Top é pagamento único de R$ 99,00.",
+    priority: true,
   },
   {
+    icon: Clock,
     question: "Quanto tempo leva para receber meu QRCode?",
     answer:
       "Após enviar suas informações e confirmar o pagamento, você receberá seus arquivos em até 48 horas úteis por e-mail.",
   },
   {
+    icon: Palette,
+    question: "Posso personalizar o QRCode?",
+    answer:
+      "Sim! Enviamos o PNG com o QR Code gerado e você pode fazer a arte da placa do jeito que quiser. Você tem total liberdade para adaptar ao visual do seu negócio.",
+  },
+  {
+    icon: HelpCircle,
+    question: "Como recebo o arquivo?",
+    answer:
+      "Por e-mail, você receberá o PDF com a arte pronta para imprimir em A4 e o PNG com o arquivo do QR Code gerado para personalização.",
+  },
+  {
+    icon: HelpCircle,
+    question: "Posso atualizar depois?",
+    answer:
+      "Sim! No plano Top, cada atualização custa R$ 30,00. No plano Pro, você tem 3 meses de atualizações gratuitas incluídas, depois R$ 30,00 por atualização.",
+  },
+  {
+    icon: HelpCircle,
     question: "Preciso de conhecimento técnico para usar?",
     answer:
       "Não! Tudo é muito simples. Você envia suas informações, recebe os arquivos prontos e é só imprimir ou encomendar a impressão profissional.",
@@ -40,7 +56,7 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section className="py-20 md:py-32">
+    <section id="faq" className="py-20 md:py-32 bg-muted/20">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl">
           <div className="text-center mb-12">
@@ -55,17 +71,41 @@ export const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="rounded-lg border border-border bg-card px-6 shadow-sm hover:shadow-md transition-shadow"
+                className={`rounded-lg border-2 bg-card px-6 shadow-sm hover:shadow-lg transition-all ${
+                  faq.priority 
+                    ? "border-primary/30 bg-primary/5" 
+                    : "border-border hover:border-primary/20"
+                }`}
               >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  <span className="font-semibold">{faq.question}</span>
+                <AccordionTrigger className="text-left hover:no-underline py-5">
+                  <div className="flex items-center gap-3">
+                    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+                      faq.priority ? "bg-primary/20" : "bg-muted"
+                    }`}>
+                      <faq.icon className={`h-5 w-5 ${faq.priority ? "text-primary" : "text-muted-foreground"}`} />
+                    </div>
+                    <span className="font-bold text-base">{faq.question}</span>
+                  </div>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pt-2">
+                <AccordionContent className="text-muted-foreground pt-2 pb-4 pl-14 text-base leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
+
+          {/* Contact CTA */}
+          <div className="mt-12 text-center p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-primary/20">
+            <MessageCircle className="h-12 w-12 text-primary mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2">Não encontrou sua dúvida?</h3>
+            <p className="text-muted-foreground mb-4">
+              Fale conosco no WhatsApp e tire todas as suas dúvidas
+            </p>
+            <Button className="bg-success hover:bg-success/90 text-white gap-2">
+              <MessageCircle className="h-5 w-5" />
+              Falar no WhatsApp
+            </Button>
+          </div>
         </div>
       </div>
     </section>

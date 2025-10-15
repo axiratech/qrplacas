@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Sparkles, Crown, ZoomIn, Info } from "lucide-react";
+import { Check, Sparkles, Crown, ZoomIn, Info, Clock, Shield, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
@@ -56,7 +56,12 @@ export const PricingPlans = () => {
   const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
 
   return (
-    <section id="planos" className="py-20 md:py-32 bg-muted/30">
+    <section id="planos" className="py-20 md:py-32 bg-gradient-to-b from-muted/30 via-background to-muted/30 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 right-10 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute bottom-1/4 left-10 h-96 w-96 rounded-full bg-secondary/5 blur-3xl" />
+      </div>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <h2 className="mb-4 font-bold">
@@ -75,33 +80,59 @@ export const PricingPlans = () => {
           {plans.map((plan, index) => (
             <Card
               key={index}
-              className={`animate-fade-in relative overflow-hidden ${
-                plan.popular ? "border-primary shadow-xl ring-2 ring-primary/20" : ""
+              className={`animate-fade-in relative overflow-hidden transition-all duration-300 hover:-translate-y-2 ${
+                plan.popular 
+                  ? "border-primary shadow-2xl ring-4 ring-primary/30 scale-105 lg:scale-110" 
+                  : "shadow-lg hover:shadow-xl"
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-primary to-secondary px-6 py-1.5 text-sm font-semibold text-primary-foreground rounded-bl-lg">
-                  Mais Popular
-                </div>
+                <>
+                  <div className="absolute top-0 right-0 bg-gradient-to-r from-primary to-secondary px-6 py-2 text-sm font-bold text-primary-foreground rounded-bl-lg shadow-lg animate-pulse">
+                    🔥 MAIS ESCOLHIDO
+                  </div>
+                  <div className="absolute -top-1 -right-1 h-32 w-32 bg-gradient-to-br from-primary/20 to-secondary/20 blur-2xl -z-10" />
+                  <div className="absolute -bottom-1 -left-1 h-32 w-32 bg-gradient-to-br from-secondary/20 to-primary/20 blur-2xl -z-10" />
+                </>
               )}
               
               <CardHeader className="space-y-4 pb-8">
                 <div className="flex items-center gap-3">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-${plan.color}/10`}>
-                    <plan.icon className={`h-6 w-6 text-${plan.color}`} />
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${
+                    plan.popular ? "from-primary to-secondary" : "from-secondary/20 to-secondary/10"
+                  }`}>
+                    <plan.icon className={`h-7 w-7 ${plan.popular ? "text-white" : "text-secondary"}`} />
                   </div>
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                  <CardTitle className="text-3xl">{plan.name}</CardTitle>
                 </div>
                 
-                <div>
+                <div className="space-y-2">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-muted-foreground">/ {plan.period}</span>
+                    <span className="text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      {plan.price}
+                    </span>
+                    <span className="text-muted-foreground text-lg">/ {plan.period}</span>
                   </div>
+                  {plan.popular && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-muted-foreground">ou apenas</span>
+                      <span className="text-xl font-bold text-primary">R$ 39/mês</span>
+                      <span className="text-sm text-muted-foreground">em 10x</span>
+                    </div>
+                  )}
                 </div>
                 
-                <CardDescription className="text-base">{plan.description}</CardDescription>
+                <CardDescription className="text-base leading-relaxed">{plan.description}</CardDescription>
+                
+                {plan.popular && (
+                  <div className="bg-success/10 border border-success/30 rounded-lg p-3 flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-success shrink-0" />
+                    <span className="text-sm font-semibold text-success">
+                      Economize R$ 90 em atualizações!
+                    </span>
+                  </div>
+                )}
               </CardHeader>
 
               <CardContent className="space-y-6">
@@ -115,11 +146,14 @@ export const PricingPlans = () => {
                 </div>
 
                 <div className="space-y-4">
+                  <p className="text-sm font-semibold text-foreground">📸 Exemplos do que você recebe:</p>
                   <div className="grid grid-cols-2 gap-3">
                     {plan.images.map((img, i) => (
                       <div key={i} className="space-y-2">
                         <div 
-                          className="relative overflow-hidden rounded-lg border border-border group cursor-pointer"
+                          className={`relative overflow-hidden rounded-lg group cursor-pointer border-2 transition-all ${
+                            plan.popular ? "border-primary/30 hover:border-primary" : "border-secondary/30 hover:border-secondary"
+                          }`}
                           onClick={() => setSelectedImage(img)}
                         >
                           <img
@@ -130,8 +164,11 @@ export const PricingPlans = () => {
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
                             <ZoomIn className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
+                          <div className="absolute top-2 left-2 bg-background/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-semibold">
+                            Preview
+                          </div>
                         </div>
-                        <p className="text-xs text-center text-muted-foreground">
+                        <p className="text-xs text-center text-muted-foreground leading-tight">
                           {img.caption}
                         </p>
                       </div>
@@ -147,17 +184,38 @@ export const PricingPlans = () => {
                 </div>
               </CardContent>
 
-              <CardFooter>
+              <CardFooter className="flex-col gap-4 pb-8">
                 <Button
                   size="lg"
-                  className={`w-full ${
+                  className={`w-full text-lg py-6 relative overflow-hidden group ${
                     plan.popular
-                      ? "bg-primary hover:bg-primary-dark"
-                      : "bg-secondary hover:bg-secondary-light"
+                      ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-xl"
+                      : "bg-secondary hover:bg-secondary/90 shadow-lg"
                   }`}
                 >
-                  {plan.buttonText}
+                  <span className="relative z-10">{plan.buttonText}</span>
+                  {plan.popular && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  )}
                 </Button>
+                
+                {/* Trust badges */}
+                <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Shield className="h-4 w-4 text-success" />
+                    <span>Satisfação Garantida</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Lock className="h-4 w-4 text-success" />
+                    <span>Pagamento Seguro</span>
+                  </div>
+                  {plan.popular && (
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4 text-primary" />
+                      <span className="text-primary font-semibold">Oferta por tempo limitado</span>
+                    </div>
+                  )}
+                </div>
               </CardFooter>
             </Card>
           ))}
