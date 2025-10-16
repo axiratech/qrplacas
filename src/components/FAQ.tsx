@@ -55,6 +55,11 @@ const faqs = [
 ];
 
 export const FAQ = () => {
+  const openWhatsApp = (message: string) => {
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/551192173292?text=${encodedMessage}`, '_blank');
+  };
+
   return (
     <section id="faq" className="py-20 md:py-32 bg-muted/20">
       <div className="container mx-auto px-4">
@@ -101,7 +106,10 @@ export const FAQ = () => {
             <p className="text-muted-foreground mb-4">
               Fale conosco no WhatsApp e tire todas as suas dúvidas
             </p>
-            <Button className="bg-success hover:bg-success/90 text-white gap-2">
+            <Button 
+              onClick={() => openWhatsApp("Olá, me interessei pelas QR Placas mas tenho dúvidas...")}
+              className="bg-success hover:bg-success/90 text-white gap-2"
+            >
               <MessageCircle className="h-5 w-5" />
               Falar no WhatsApp
             </Button>

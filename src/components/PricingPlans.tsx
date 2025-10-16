@@ -55,6 +55,11 @@ const plans = [
 export const PricingPlans = () => {
   const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
 
+  const openWhatsApp = (message: string) => {
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/551192173292?text=${encodedMessage}`, '_blank');
+  };
+
   return (
     <section id="planos" className="py-20 md:py-32 bg-gradient-to-b from-muted/30 via-background to-muted/30 relative overflow-hidden">
       {/* Decorative elements */}
@@ -187,6 +192,11 @@ export const PricingPlans = () => {
               <CardFooter className="flex-col gap-4 pb-8">
                 <Button
                   size="lg"
+                  onClick={() => openWhatsApp(
+                    plan.name === "QR Placa Top" 
+                      ? "Olá. Me interessei pelo QR Placa TOP. Quero mais informações"
+                      : "Olá. Me interessei pelo QR Placa PRO. Quero mais informações"
+                  )}
                   className={`w-full text-lg py-6 relative overflow-hidden group ${
                     plan.popular
                       ? "bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-xl"
