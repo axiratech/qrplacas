@@ -19,9 +19,9 @@ const plans = [
     features: [
       "Página simples com logo, horários, WhatsApp e redes sociais",
       "QRCode personalizado",
-      "Arquivo PDF (A4) pronto para imprimir",
+      "Arquivo PDF (A4) pronto para imprimir. Arte simples",
       "Arquivo PNG do QRCode para personalização",
-      "Atualizações futuras: R$ 30,00 por solicitação",
+      "Atualizações futuras: R$ 20,00 por solicitação",
     ],
     images: [
       { src: paginaQrTop, caption: "Exemplo de Página Simples" },
@@ -39,10 +39,10 @@ const plans = [
     popular: true,
     features: [
       "Mini site funcional com serviços, horários e botões de agendamento",
-      "Arte otimizada com QRCode (A4) pronta para impressão",
-      "Arquivo PNG do QRCode",
+      "Arte profissional em PDF com QRCode (A4) pronta para impressão",
+      "Arquivo PNG do QRCode para personalização",
       "BRINDE: 3 meses de atualizações gratuitas",
-      "Após isso, R$ 30,00 por atualização",
+      "Após isso, R$ 20,00 por atualização",
     ],
     images: [
       { src: minisiteQrPro, caption: "Exemplo de minisite do plano Pro" },
