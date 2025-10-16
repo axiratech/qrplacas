@@ -1,3 +1,4 @@
+import { Instagram, Facebook, Shield } from "lucide-react";
 import logo from "@/assets/logo-qr-placas.png";
 
 export const Footer = () => {
@@ -15,7 +16,10 @@ export const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed">
               Seu negócio, digital e funcional. Modernize seu atendimento com QR Codes inteligentes.
             </p>
+            <div className="text-sm text-muted-foreground">
+             Redes sociais removidas por enquanto.
             </div>
+
           </div>
 
           {/* Links */}
