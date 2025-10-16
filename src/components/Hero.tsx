@@ -39,7 +39,7 @@ export const Hero = () => {
             </h1>
             
             <p className="text-lg text-muted-foreground md:text-xl leading-relaxed">
-              Substitua placas antigas por <span className="font-semibold text-foreground">QR Codes modernos</span>. Seus clientes acessam tudo com um toque: horários, contato, redes sociais e muito mais.
+              Substitua placas antigas por <span className="font-semibold text-foreground">QR Codes modernos</span>. Seus clientes acessam tudo com um toque: horários, contato, redes sociais e muito mais. Seu negócio ativo 24/7.
             </p>
 
             {/* Social Proof Badge */}
