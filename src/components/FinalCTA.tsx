@@ -42,7 +42,7 @@ export const FinalCTA = () => {
               variant="outline" 
               className="gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all text-lg px-10 py-7"
             >
-              Ir Pro com Desconto (R$ 390)
+              Plano Pro - o mais escolhido (R$ 390)
             </Button>
           </div>
         </div>
