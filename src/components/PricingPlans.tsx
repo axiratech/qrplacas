@@ -57,7 +57,13 @@ export const PricingPlans = () => {
 
   const openWhatsApp = (message: string) => {
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/551192173292?text=${encodedMessage}`, '_blank');
+    const link = document.createElement('a');
+    link.href = `https://wa.me/551192173292?text=${encodedMessage}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
