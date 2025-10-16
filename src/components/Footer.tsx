@@ -1,3 +1,4 @@
+import { Instagram, Facebook, Shield } from "lucide-react";
 import logo from "@/assets/logo-qr-placas.png";
 
 export const Footer = () => {
@@ -52,7 +53,7 @@ export const Footer = () => {
           <div>
             <h4 className="mb-4 font-semibold">Suporte</h4>
             <p className="text-sm text-muted-foreground">
-              Dúvidas? Entre em contato conosco para mais informações sobre nossos serviços. axiratech@gmail.com
+              Dúvidas? Entre em contato conosco para mais informações sobre nossos serviços.
             </p>
           </div>
         </div>
