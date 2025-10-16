@@ -16,13 +16,6 @@ export const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed">
               Seu negócio, digital e funcional. Modernize seu atendimento com QR Codes inteligentes.
             </p>
-            <div className="flex gap-3 pt-2">
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors">
-                <Instagram className="h-5 w-5 text-primary" />
-              </a>
-              <a href="#" className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors">
-                <Facebook className="h-5 w-5 text-primary" />
-              </a>
             </div>
           </div>
 
@@ -53,7 +46,7 @@ export const Footer = () => {
           <div>
             <h4 className="mb-4 font-semibold">Suporte</h4>
             <p className="text-sm text-muted-foreground">
-              Dúvidas? Entre em contato conosco para mais informações sobre nossos serviços.
+              Dúvidas? Entre em contato conosco para mais informações sobre nossos serviços. axiratech@gmail.com
             </p>
           </div>
         </div>
