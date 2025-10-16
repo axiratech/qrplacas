@@ -4,7 +4,7 @@ export const FinalCTA = () => {
   const openWhatsApp = (message: string) => {
     const encodedMessage = encodeURIComponent(message);
     const link = document.createElement('a');
-    link.href = `https://wa.me/551192173292?text=${encodedMessage}`;
+    link.href = `https://wa.me/5511921763292?text=${encodedMessage}`;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     document.body.appendChild(link);
