@@ -65,10 +65,6 @@ export const HowItWorks = () => {
                   </span>
                 </div>
               </div>
-
-              {index < steps.length - 1 && (
-                <div className="absolute right-0 top-16 hidden h-1 w-full bg-gradient-to-r from-primary via-secondary to-primary md:block opacity-20 animate-pulse" />
-              )}
             </div>
           ))}
         </div>
