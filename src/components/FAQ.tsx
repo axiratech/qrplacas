@@ -9,13 +9,6 @@ import { Button } from "@/components/ui/button";
 
 const faqs = [
   {
-    icon: Shield,
-    question: "E se eu não gostar do resultado?",
-    answer:
-      "Garantia de 7 dias! Se não ficar satisfeito com o resultado, devolvemos 100% do seu dinheiro, sem perguntas. Sua satisfação é nossa prioridade.",
-    priority: true,
-  },
-  {
     icon: CreditCard,
     question: "Posso parcelar o pagamento?",
     answer:
