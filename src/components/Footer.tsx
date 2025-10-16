@@ -1,4 +1,3 @@
-import { Instagram, Facebook, Shield } from "lucide-react";
 import logo from "@/assets/logo-qr-placas.png";
 
 export const Footer = () => {
