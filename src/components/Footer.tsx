@@ -16,8 +16,8 @@ export const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed">
               Seu negócio, digital e funcional. Modernize seu atendimento com QR Codes inteligentes.
             </p>
-            <div className="text-sm text-muted-foreground">
-             Redes sociais removidas por enquanto.
+            <div className="text-sm text-muted-foreground font-bold">
+             Seu negócio ativo 24/7.
             </div>
 
           </div>
@@ -49,7 +49,7 @@ export const Footer = () => {
           <div>
             <h4 className="mb-4 font-semibold">Suporte</h4>
             <p className="text-sm text-muted-foreground">
-              Dúvidas? Entre em contato conosco para mais informações sobre nossos serviços. axiratech@gmail.com
+              Dúvidas? Entre em contato conosco para mais informações sobre nossos serviços. <strong>axiratech@gmail.com</strong>
             </p>
           </div>
         </div>
