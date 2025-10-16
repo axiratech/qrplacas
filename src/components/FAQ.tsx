@@ -26,11 +26,11 @@ const faqs = [
     icon: Clock,
     question: "Quanto tempo leva para receber meu QRCode?",
     answer:
-      "Após enviar suas informações e confirmar o pagamento, você receberá seus arquivos em até 48 horas úteis por e-mail.",
+      "Após enviar suas informações e confirmar o pagamento, no plano Top você receberá seus arquivos em até 48 horas úteis por e-mail. No Plano PRO em até 5 dias úteis, pois confeccionar o minisite demanda maior tempo",
   },
   {
     icon: Palette,
-    question: "Posso personalizar o QRCode?",
+    question: "Posso fazer minha própria arte com o QRCode?",
     answer:
       "Sim! Enviamos o PNG com o QR Code gerado e você pode fazer a arte da placa do jeito que quiser. Você tem total liberdade para adaptar ao visual do seu negócio.",
   },
@@ -44,7 +44,7 @@ const faqs = [
     icon: HelpCircle,
     question: "Posso atualizar depois?",
     answer:
-      "Sim! No plano Top, cada atualização custa R$ 30,00. No plano Pro, você tem 3 meses de atualizações gratuitas incluídas, depois R$ 30,00 por atualização.",
+      "Sim! No plano Top, cada atualização custa R$ 20,00. No plano Pro, você tem 3 meses de atualizações gratuitas incluídas, depois R$ 20,00 por atualização.",
   },
   {
     icon: HelpCircle,
