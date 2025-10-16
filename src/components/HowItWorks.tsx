@@ -59,8 +59,8 @@ export const HowItWorks = () => {
                 {/* Time badges */}
                 <div className="mt-4">
                   <span className="inline-block px-3 py-1 rounded-full bg-accent/20 text-accent-dark text-xs font-semibold">
-                    {index === 0 && "2 min"}
-                    {index === 1 && "Instantâneo"}
+                    {index === 0 && "3 min"}
+                    {index === 1 && "Modernidade"}
                     {index === 2 && "Pronto!"}
                   </span>
                 </div>
