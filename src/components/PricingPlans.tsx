@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Sparkles, Crown, ZoomIn, Info, Clock, Shield, Lock } from "lucide-react";
+import { Check, Sparkles, Crown, ZoomIn, Info, Clock, Shield, Lock, Ticket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
@@ -7,6 +7,20 @@ import paginaQrTop from "@/assets/pagina-qr-top.png";
 import minisiteQrPro from "@/assets/minisite-qr-pro.png";
 import placaPdfTop from "@/assets/placa-pdf-qr-top.png";
 import placaPdfPro from "@/assets/placa-pdf-qr-pro.png";
+
+// Constantes da promoção
+const PROMO_END_DATE = new Date('2025-12-31T23:59:59');
+const PROMO_CODE = '25off';
+const PROMO_DISCOUNT = 0.25; // 25%
+
+// Verifica se a promoção está ativa
+const isPromoActive = () => new Date() <= PROMO_END_DATE;
+
+// Calcula preços promocionais para o plano PRO
+const PRO_ORIGINAL_PRICE = 390;
+const PRO_PROMO_PRICE = PRO_ORIGINAL_PRICE * (1 - PROMO_DISCOUNT); // R$ 292,50
+const PRO_ORIGINAL_INSTALLMENT = 39;
+const PRO_PROMO_INSTALLMENT = PRO_PROMO_PRICE / 10; // R$ 29,25
 
 const plans = [
   {
@@ -54,6 +68,8 @@ const plans = [
 
 export const PricingPlans = () => {
   const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
+
+  const promoActive = isPromoActive();
 
   const openWhatsApp = (message: string) => {
     const encodedMessage = encodeURIComponent(message);
@@ -103,6 +119,11 @@ export const PricingPlans = () => {
                   <div className="absolute top-0 right-0 bg-gradient-to-r from-primary to-secondary px-6 py-2 text-sm font-bold text-primary-foreground rounded-bl-lg shadow-lg animate-pulse">
                     🔥 MAIS ESCOLHIDO
                   </div>
+                  {promoActive && (
+                    <div className="absolute top-0 left-0 bg-gradient-to-r from-destructive to-orange-500 px-4 py-2 text-sm font-bold text-white rounded-br-lg shadow-lg animate-pulse">
+                      🎉 25% OFF ATÉ 31/12
+                    </div>
+                  )}
                   <div className="absolute -top-1 -right-1 h-32 w-32 bg-gradient-to-br from-primary/20 to-secondary/20 blur-2xl -z-10" />
                   <div className="absolute -bottom-1 -left-1 h-32 w-32 bg-gradient-to-br from-secondary/20 to-primary/20 blur-2xl -z-10" />
                 </>
@@ -119,24 +140,65 @@ export const PricingPlans = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                      {plan.price}
-                    </span>
-                    <span className="text-muted-foreground text-lg">/ {plan.period}</span>
-                  </div>
-                  {plan.popular && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">ou apenas</span>
-                      <span className="text-xl font-bold text-primary">R$ 39/mês</span>
-                      <span className="text-sm text-muted-foreground">em 10x</span>
-                    </div>
+                  {plan.popular && promoActive ? (
+                    <>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-bold text-muted-foreground line-through opacity-60">
+                          {plan.price}
+                        </span>
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-5xl font-black bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
+                          R$ {PRO_PROMO_PRICE.toFixed(2).replace('.', ',')}
+                        </span>
+                        <span className="text-muted-foreground text-lg">/ {plan.period}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-muted-foreground">ou apenas</span>
+                        <span className="text-xl font-bold text-green-600">R$ {PRO_PROMO_INSTALLMENT.toFixed(2).replace('.', ',')}/mês</span>
+                        <span className="text-sm text-muted-foreground">em 10x</span>
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        <span className="line-through">R$ {PRO_ORIGINAL_INSTALLMENT}/mês</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-5xl font-black bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                          {plan.price}
+                        </span>
+                        <span className="text-muted-foreground text-lg">/ {plan.period}</span>
+                      </div>
+                      {plan.popular && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-muted-foreground">ou apenas</span>
+                          <span className="text-xl font-bold text-primary">R$ 39/mês</span>
+                          <span className="text-sm text-muted-foreground">em 10x</span>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
                 
                 <CardDescription className="text-base leading-relaxed">{plan.description}</CardDescription>
                 
-                {plan.popular && (
+                {plan.popular && promoActive && (
+                  <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-2 border-orange-500/50 rounded-lg p-4 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Ticket className="h-5 w-5 text-orange-600 shrink-0" />
+                      <span className="text-sm font-bold text-orange-600">
+                        💰 Use o cupom <span className="bg-orange-600 text-white px-2 py-0.5 rounded font-mono">{PROMO_CODE}</span> na compra
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Clock className="h-4 w-4 shrink-0" />
+                      <span>Válido até 31/12/2025</span>
+                    </div>
+                  </div>
+                )}
+                
+                {plan.popular && !promoActive && (
                   <div className="bg-success/10 border border-success/30 rounded-lg p-3 flex items-center gap-2">
                     <Sparkles className="h-5 w-5 text-success shrink-0" />
                     <span className="text-sm font-semibold text-success">
@@ -201,7 +263,9 @@ export const PricingPlans = () => {
                   onClick={() => openWhatsApp(
                     plan.name === "QR Placa Top" 
                       ? "Olá. Me interessei pelo QR Placa TOP. Quero mais informações"
-                      : "Olá. Me interessei pelo QR Placa PRO. Quero mais informações"
+                      : promoActive
+                        ? `Olá! Me interessei pelo QR Placa PRO com 25% OFF. Quero usar o cupom ${PROMO_CODE} para ter o desconto!`
+                        : "Olá. Me interessei pelo QR Placa PRO. Quero mais informações"
                   )}
                   className={`w-full text-lg py-6 relative overflow-hidden group ${
                     plan.popular
