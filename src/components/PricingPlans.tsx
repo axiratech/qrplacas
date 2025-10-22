@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Sparkles, Crown, ZoomIn, Info, Clock, Shield, Lock, Ticket } from "lucide-react";
+import { Check, Sparkles, Crown, ZoomIn, Info, Clock, Shield, Lock, Ticket, Package, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
@@ -220,6 +220,30 @@ export const PricingPlans = () => {
 
                 <div className="space-y-4">
                   <p className="text-sm font-semibold text-foreground">📸 Exemplos do que você recebe:</p>
+                  
+                  {/* Card informativo digital */}
+                  <div className="bg-blue-50 dark:bg-blue-950/30 border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4 space-y-3">
+                    <div className="flex items-start gap-3">
+                      <Package className="h-5 w-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
+                      <div className="space-y-1">
+                        <p className="text-sm font-semibold text-blue-900 dark:text-blue-100">
+                          📦 O que você recebe (100% Digital):
+                        </p>
+                        <ul className="text-xs text-blue-800 dark:text-blue-200 space-y-1">
+                          <li>✅ QR Code personalizado (arquivo PNG)</li>
+                          <li>✅ Página simples ou Minisite funcional</li>
+                          <li>✅ Arte em PDF (A4) pronta para impressão</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 pt-2 border-t border-blue-200 dark:border-blue-800">
+                      <Printer className="h-5 w-5 text-orange-600 dark:text-orange-400 shrink-0 mt-0.5" />
+                      <p className="text-xs text-orange-800 dark:text-orange-200 font-medium">
+                        ⚠️ Não realizamos a impressão física. Você recebe os arquivos prontos para imprimir onde preferir.
+                      </p>
+                    </div>
+                  </div>
+                  
                   <div className="grid grid-cols-2 gap-3">
                     {plan.images.map((img, i) => (
                       <div key={i} className="space-y-2">
@@ -251,7 +275,7 @@ export const PricingPlans = () => {
                   <div className="flex items-start gap-2 pt-2">
                     <Info className="h-4 w-4 text-muted-foreground/60 mt-0.5 shrink-0" />
                     <p className="text-xs italic text-muted-foreground/80">
-                      Os dados mostrados nas imagens são fictícios e apenas para fins ilustrativos.
+                      ⚠️ IMPORTANTE: Os dados mostrados são apenas ilustrativos. Nosso serviço é 100% digital - criamos o QR Code, a página/minisite e o arquivo PDF da arte pronta para impressão. Não realizamos a impressão física das placas.
                     </p>
                   </div>
                 </div>
