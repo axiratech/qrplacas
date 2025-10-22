@@ -231,7 +231,7 @@ export const PricingPlans = () => {
                         </p>
                         <ul className="text-xs text-blue-800 dark:text-blue-200 space-y-1">
                           <li>✅ QR Code personalizado (arquivo PNG)</li>
-                          <li>✅ Página simples ou Minisite funcional</li>
+                          <li>✅ Página simples (Top) ou Minisite funcional (Pro)</li>
                           <li>✅ Arte em PDF (A4) pronta para impressão</li>
                         </ul>
                       </div>
